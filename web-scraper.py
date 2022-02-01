@@ -39,7 +39,11 @@ def main():
                 articles.append(Article(title, timestamp))
                 print(Article(title, timestamp))
 
-        time.sleep(30)
+        for x in range (0,5):  
+            b = "Scanning" + "." * x
+            print (b, end='\r')
+            time.sleep(1)
+        print('Scanning    ', end='\r')
 
 def get_soup(link):
     html_doc = requests.get(link)

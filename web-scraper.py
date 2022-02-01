@@ -48,7 +48,6 @@ def main():
 
         time.sleep(30)
 
-
 def get_soup(link):
     html_doc = requests.get(link)
     soup = BeautifulSoup(html_doc.text, 'html.parser')
@@ -62,7 +61,6 @@ def find_timestamp(article):
         timestamp = article.find('time').get('datetime')
         return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.000Z')
         
-
 def get_data_from_soup(soup):
     data = []
     for div in soup.find_all('div'):
@@ -78,7 +76,8 @@ class Article:
         if isinstance(timestamp, datetime):
             self.timestamp = timestamp
         else:
-            self.timestamp = datetime.now()
+            cur_time = datetime.now()
+            self.timestamp = datetime(cur_time.year, cur_time.month, cur_time.day)
 
     def __lt__(self, other):
         return self.timestamp < other.timestamp

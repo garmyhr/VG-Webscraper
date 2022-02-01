@@ -37,9 +37,10 @@ def main():
                 continue
             
             if last_timestamp < timestamp and last_title != title:
+                articles.append(Article(title, timestamp))
                 print(Article(title, timestamp))
 
-        time.sleep(30)
+        time.sleep(5)
 
 def get_soup(link):
     html_doc = requests.get(link)

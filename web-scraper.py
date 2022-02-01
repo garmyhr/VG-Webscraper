@@ -81,8 +81,7 @@ class Article:
         if isinstance(timestamp, datetime):
             self.timestamp = timestamp
         else:
-            cur_time = datetime.now()
-            self.timestamp = datetime(cur_time.year, cur_time.month, cur_time.day)
+            self.timestamp = datetime.now()
 
     def __lt__(self, other):
         return self.timestamp < other.timestamp

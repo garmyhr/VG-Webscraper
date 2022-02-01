@@ -24,7 +24,6 @@ def main():
         # Get last element from sorted articles
         last_timestamp = articles[-1].timestamp
         last_title = articles[-1].title
-        print('scanning...')
         soup = get_soup(link)
         data = get_data_from_soup(soup)
 

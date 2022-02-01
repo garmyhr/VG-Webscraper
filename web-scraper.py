@@ -7,31 +7,24 @@ from datetime import datetime
 
 def main():
     
-    link = "https://www.vg.no"
     articles = []
-
+    link = "https://www.vg.no"
     soup = get_soup(link)
     data = get_data_from_soup(soup)
 
-    # Scrapes initial articles from link
-    for article in data:
-        title = find_title(article)
-        timestamp = find_timestamp(article)
+    get_initial_articles(data, articles)
 
-        if title != None:
-            articles.append(Article(title, timestamp))
-
-    # Sorts initial articles by publishingtime
+    # Sort and print initial articles
     articles.sort()
     for article in articles:
         print(article)
     
-
     # Main loop
     while(True):
 
         # Get last element from sorted articles
         last_timestamp = articles[-1].timestamp
+        last_title = articles[-1].title
         print('scanning...')
         soup = get_soup(link)
         data = get_data_from_soup(soup)
@@ -43,7 +36,7 @@ def main():
             if timestamp == None:
                 continue
             
-            if last_timestamp < timestamp:
+            if last_timestamp < timestamp and last_title != title:
                 print(Article(title, timestamp))
 
         time.sleep(30)
@@ -69,6 +62,15 @@ def get_data_from_soup(soup):
                 data.append(div)
 
     return data
+
+def get_initial_articles(data, articles):
+
+    for article in data:
+        title = find_title(article)
+        timestamp = find_timestamp(article)
+
+        if title != None and timestamp != None:
+            articles.append(Article(title, timestamp))
 
 class Article:
     def __init__(self, title, timestamp):

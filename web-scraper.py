@@ -40,7 +40,7 @@ def main():
                 articles.append(Article(title, timestamp))
                 print(Article(title, timestamp))
 
-        time.sleep(5)
+        time.sleep(30)
 
 def get_soup(link):
     html_doc = requests.get(link)

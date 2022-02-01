@@ -5,11 +5,6 @@ import operator
 import time
 import datetime
 
-# Skriv et program som kjører i en terminal, som periodisk gjør en såkalt "web scrape" av forsiden på vg.no. 
-# Publiseringstidspunkt, tittel og evt ingress eller annen hovedinformasjon skrives ut som enkeltlinjer, sortert på publiseringstidspunkt.
-# Første scrape viser alle artikler, videre scrapes viser bare nye artikler. 
-# Programmet kjører i uendelig loop, i sleep i intervallene mellom scrapes, inntil bruker avbryter med ctrl+c eller tilsvarende.
-
 def main():
     
     link = "https://www.vg.no"

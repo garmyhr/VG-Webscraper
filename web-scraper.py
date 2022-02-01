@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import operator
 import time
-import datetime
+from datetime import datetime
 
 def main():
     
@@ -60,7 +60,7 @@ def find_title(article):
 def find_timestamp(article):
     if article.find('time') != None:
         timestamp = article.find('time').get('datetime')
-        return datetime.datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.000Z')
+        return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.000Z')
         
 
 def get_data_from_soup(soup):
@@ -75,10 +75,10 @@ def get_data_from_soup(soup):
 class Article:
     def __init__(self, title, timestamp):
         self.title = title
-        if isinstance(timestamp, datetime.datetime):
+        if isinstance(timestamp, datetime):
             self.timestamp = timestamp
         else:
-            self.timestamp = datetime.datetime.now()
+            self.timestamp = datetime.now()
 
     def __lt__(self, other):
         return self.timestamp < other.timestamp

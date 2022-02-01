@@ -1,7 +1,6 @@
 from http.client import NON_AUTHORITATIVE_INFORMATION
 from bs4 import BeautifulSoup
 import requests
-import operator
 import time
 from datetime import datetime
 
